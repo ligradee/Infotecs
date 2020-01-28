@@ -7,6 +7,7 @@ class Primes
 
 private:
 	std::set<int> numbers;
+	std::set<int>::iterator it;
 	uint32_t max;
 	
 public:
@@ -36,7 +37,14 @@ public:
 			return false;
 	}
 
+	std::set<int>::iterator begin(){
+		return it = array.begin();
+	};
 
+	std::set<int>::iterator end(){
+		return it = array.end();
+	};
+	
 	uint32_t size(){
 		return array.size();
 	}
