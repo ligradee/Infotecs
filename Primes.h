@@ -2,6 +2,8 @@
 #define PRIMES_H
 #include <set>
 #include <iostream>
+#include <iterator>
+#include <utility>
 class Primes
 {
 
@@ -15,7 +17,7 @@ public:
 		max = max_value;
 		for (int i = 1; i <= max; i++){
 			if (isPrime(i) == 1){
-				array.insert(i);
+				numbers.insert(i);
 			}
 		}
 	}
@@ -37,16 +39,27 @@ public:
 			return false;
 	}
 
+	std::pair<std::set<int>::iterator,bool> insert(const uint32_t& value){
+		if ((max == 0) & (isPrime(value) == 1)){
+			numbers.insert(value);
+			it = numbers.find(value);
+			return std::make_pair(it, 0);
+		}
+		else
+			it = numbers.begin();
+			return std::make_pair(it, 1);
+	}
+
 	std::set<int>::iterator begin(){
-		return it = array.begin();
-	};
+		return it = numbers.begin();
+	}
 
 	std::set<int>::iterator end(){
-		return it = array.end();
-	};
+		return it = numbers.end();
+	}
 	
 	uint32_t size(){
-		return array.size();
+		return numbers.size();
 	}
 
 }
