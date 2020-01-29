@@ -74,6 +74,14 @@ public:
 		return it = numbers.end();
 	}
 	
+	uint32_t operator[](uint32_t index){
+		it = numbers.begin();
+		for(int i = 0; i < index; i++){
+			it++;
+		}
+		return *it;
+	}
+
 	uint32_t size(){
 		return numbers.size();
 	}
