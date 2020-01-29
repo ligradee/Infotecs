@@ -4,6 +4,7 @@
 #include <iostream>
 #include <iterator>
 #include <utility>
+#include <fstream>
 class Primes
 {
 
@@ -39,6 +40,15 @@ public:
 			return false;
 	}
 
+	void print(){
+		std::ofstream num;
+		num.open("Print.txt");
+		for (it = numbers.begin(); it != numbers.end(); ++it){
+			num << *it << std::endl;
+		}
+		num.close();
+	}
+	
 	std::pair<std::set<int>::iterator,bool> insert(const uint32_t& value){
 		if ((max == 0) & (isPrime(value) == 1)){
 			numbers.insert(value);
@@ -62,5 +72,5 @@ public:
 		return numbers.size();
 	}
 
-}
+};
 #endif
