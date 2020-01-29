@@ -48,7 +48,13 @@ public:
 		}
 		num.close();
 	}
-	
+
+	void print(){
+		for (it = numbers.begin(); it != numbers.end(); ++it){
+			std::cout << *it << " ";
+		}
+	}
+
 	std::pair<std::set<int>::iterator,bool> insert(const uint32_t& value){
 		if ((max == 0) & (isPrime(value) == 1)){
 			numbers.insert(value);
