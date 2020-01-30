@@ -9,14 +9,14 @@ class Primes
 {
 
 private:
-	std::set<int> numbers;
-	std::set<int>::iterator it;
+	std::set<uint32_t> numbers;
+	std::set<uint32_t>::iterator it;
 	uint32_t max;
 	
 public:
 	Primes(uint32_t max_value){
 		max = max_value;
-		for (int i = 1; i <= max; i++){
+		for (uint32_t i = 1; i <= max; i++){
 			if (isPrime(i) == 1){
 				numbers.insert(i);
 			}
@@ -27,9 +27,9 @@ public:
 		max = 0;
 	}
 
-	bool isPrime(int n){
+	bool isPrime(uint32_t n){
 		if (n > 1){
-			for (int i = 2; i < n; i++){
+			for (uint32_t i = 2; i < n; i++){
 				if(n % i == 0){
 					return false;
 				}
@@ -55,7 +55,43 @@ public:
 		}
 	}
 
-	std::pair<std::set<int>::iterator,bool> insert(const uint32_t& value){
+	void find(){
+		max = 100;
+		numbers.clear();
+		for (uint32_t i = 1; i <= max; i++){
+			if (isPrime(i) == 1){
+				numbers.insert(i);
+			}
+		}
+	}
+
+	void find(uint32_t max_value, std::string flag){
+		if (flag == "i"){
+			max = max_value;
+			numbers.clear();
+			for (uint32_t i = 1; i <= max; i++){
+				if (isPrime(i) == 1){
+					numbers.insert(i);
+				}
+			}
+		}
+		if (flag == "ii"){
+			max = 0;
+			uint32_t max_count = max_value;
+			numbers.clear();
+			uint32_t count = 0;
+			uint32_t i = 1;
+			while (count < max_count){
+				if (isPrime(i) == 1){
+					numbers.insert(i);
+					count++;
+				}
+				i++;
+			}
+		}
+	}
+
+	std::pair<std::set<uint32_t>::iterator,bool> insert(const uint32_t& value){
 		if ((max == 0) & (isPrime(value) == 1)){
 			numbers.insert(value);
 			it = numbers.find(value);
@@ -66,17 +102,17 @@ public:
 			return std::make_pair(it, 1);
 	}
 
-	std::set<int>::iterator begin(){
+	std::set<uint32_t>::iterator begin(){
 		return it = numbers.begin();
 	}
 
-	std::set<int>::iterator end(){
+	std::set<uint32_t>::iterator end(){
 		return it = numbers.end();
 	}
 	
 	uint32_t operator[](uint32_t index){
 		it = numbers.begin();
-		for(int i = 0; i < index; i++){
+		for(uint32_t i = 0; i < index; i++){
 			it++;
 		}
 		return *it;
