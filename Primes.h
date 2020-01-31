@@ -27,6 +27,9 @@ public:
 		max = 0;
 	}
 
+	Primes(const Primes &primes): max(primes.max), numbers(primes.numbers){
+	}
+	
 	bool isPrime(uint32_t n){
 		if (n > 1){
 			for (uint32_t i = 2; i < n; i++){
