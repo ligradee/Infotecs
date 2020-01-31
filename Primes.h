@@ -40,11 +40,27 @@ public:
 			return false;
 	}
 
-	void print(){
+	void print(uint32_t flag){
 		std::ofstream num;
 		num.open("Print.txt");
-		for (it = numbers.begin(); it != numbers.end(); ++it){
-			num << *it << std::endl;
+		uint32_t i = 1;
+		if (flag == 0){
+			for (it = numbers.begin(); it != numbers.end(); ++it){
+				num << *it << std::endl;
+			}
+		}
+		if (flag == 1){
+			for (it = numbers.begin(); it != numbers.end(); ++it){
+				auto super_prime = [this](uint32_t i){ if(isPrime(i) == 1){return 1;} return 0;};
+				if (super_prime(i) == 1) num << *it << std::endl;
+				i++;
+			}
+		}
+		if (flag == 2){
+			for (it = numbers.begin(); it != numbers.end(); ++it){
+				auto sophies_prime = [this](){ if(isPrime(2*(*it)+1) == 1){return 1;} return 0;};
+				if (sophies_prime() == 1) num << *it << std::endl;
+			}
 		}
 		num.close();
 	}
