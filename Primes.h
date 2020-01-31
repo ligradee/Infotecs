@@ -5,6 +5,7 @@
 #include <iterator>
 #include <utility>
 #include <fstream>
+#include <exception>
 class Primes
 {
 
@@ -15,6 +16,9 @@ private:
 	
 public:
 	Primes(uint32_t max_value){
+		if(max_value < 2){
+			throw std::invalid_argument("You cannot create a container with this border.");
+		}
 		max = max_value;
 		for (uint32_t i = 1; i <= max; i++){
 			if (isPrime(i) == 1){
@@ -69,6 +73,8 @@ public:
 				if (sophies_prime() == 1) num << *it << std::endl;
 			}
 		}
+		else
+			throw std::invalid_argument("There is no such command.");
 		num.close();
 	}
 
@@ -92,6 +98,8 @@ public:
 				if (sophies_prime() == 1) std::cout << *it << " ";
 			}
 		}
+		else 
+			throw std::invalid_argument("There is no such command.");
 	}
 
 	void find(){
@@ -128,6 +136,8 @@ public:
 				i++;
 			}
 		}
+		else 
+			throw std::invalid_argument("There is no such command.");
 	}
 
 	std::pair<std::set<uint32_t>::iterator,bool> insert(const uint32_t& value){
@@ -136,9 +146,10 @@ public:
 			it = numbers.find(value);
 			return std::make_pair(it, 0);
 		}
-		else
+		else{
 			it = numbers.begin();
 			return std::make_pair(it, 1);
+		}
 	}
 
 	std::set<uint32_t>::iterator begin(){
@@ -150,6 +161,9 @@ public:
 	}
 	
 	uint32_t operator[](uint32_t index){
+		if ((index < 0) || (index > numbers.size())){
+			throw std::invalid_argument("Invalid argument");
+		}
 		it = numbers.begin();
 		for(uint32_t i = 0; i < index; i++){
 			it++;
