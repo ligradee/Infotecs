@@ -38,7 +38,7 @@ public:
 		primes.max = 0;
 		primes.numbers.clear();
 	}
-	bool isPrime(uint32_t n){
+	bool isPrime(const uint32_t n) const{
 		if (n > 1){
 			for (uint32_t i = 2; i < n; i++){
 				if(n % i == 0){
@@ -51,9 +51,9 @@ public:
 			return false;
 	}
 
-	void print(uint32_t flag){
+	void print(const uint32_t flag, const std::string name_file){
 		std::ofstream num;
-		num.open("Print.txt");
+		num.open(name_file);
 		uint32_t i = 1;
 		if (flag == 0){
 			for (it = numbers.begin(); it != numbers.end(); ++it){
@@ -78,7 +78,7 @@ public:
 		num.close();
 	}
 
-	void print(uint32_t flag){
+	void print(const uint32_t flag){
 		uint32_t i = 1;
 		if (flag == 0){
 			for (it = numbers.begin(); it != numbers.end(); ++it){
@@ -112,7 +112,7 @@ public:
 		}
 	}
 
-	void find(uint32_t max_value, std::string flag){
+	void find(const uint32_t max_value, const std::string flag){
 		if (flag == "i"){
 			max = max_value;
 			numbers.clear();
@@ -160,7 +160,7 @@ public:
 		return it = numbers.end();
 	}
 	
-	uint32_t operator[](uint32_t index){
+	uint32_t operator[](const uint32_t index){
 		if ((index < 0) || (index > numbers.size())){
 			throw std::invalid_argument("Invalid argument");
 		}
@@ -171,7 +171,7 @@ public:
 		return *it;
 	}
 
-	uint32_t size(){
+	uint32_t size() const{
 		return numbers.size();
 	}
 
