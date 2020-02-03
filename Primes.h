@@ -73,8 +73,9 @@ public:
 				if (sophies_prime() == 1) num << *it << std::endl;
 			}
 		}
-		else
+		if ((flag != 0) && (flag != 1) && (flag != 2)){
 			throw std::invalid_argument("There is no such command.");
+		}
 		num.close();
 	}
 
@@ -98,8 +99,9 @@ public:
 				if (sophies_prime() == 1) std::cout << *it << " ";
 			}
 		}
-		else 
+		if ((flag != 0) && (flag != 1) && (flag != 2)){ 
 			throw std::invalid_argument("There is no such command.");
+		}
 	}
 
 	void find(){
@@ -136,8 +138,9 @@ public:
 				i++;
 			}
 		}
-		else 
+		if((flag != "ii") && (flag == "i")){
 			throw std::invalid_argument("There is no such command.");
+		}
 	}
 
 	std::pair<std::set<uint32_t>::iterator,bool> insert(const uint32_t& value){
