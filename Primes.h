@@ -56,21 +56,36 @@ public:
 		num.open(name_file);
 		uint32_t i = 1;
 		if (flag == 0){
-			for (it = numbers.begin(); it != numbers.end(); ++it){
-				num << *it << std::endl;
+			if (size() == 0){
+				std::cout << "This container is empty" << std::endl;
 			}
+			else{
+				for (it = numbers.begin(); it != numbers.end(); ++it){
+					num << *it << std::endl;
+				}
+			}	
 		}
 		if (flag == 1){
-			for (it = numbers.begin(); it != numbers.end(); ++it){
-				auto super_prime = [this](uint32_t i){ if(isPrime(i) == 1){return 1;} return 0;};
-				if (super_prime(i) == 1) num << *it << std::endl;
-				i++;
+			if (size() == 0){
+				std::cout << "This container is empty" << std::endl;
+			}
+			else{
+				for (it = numbers.begin(); it != numbers.end(); ++it){
+					auto super_prime = [this](uint32_t i){ if(isPrime(i) == 1){return 1;} return 0;};
+					if (super_prime(i) == 1) num << *it << std::endl;
+					i++;
+				}
 			}
 		}
 		if (flag == 2){
-			for (it = numbers.begin(); it != numbers.end(); ++it){
-				auto sophies_prime = [this](){ if(isPrime(2*(*it)+1) == 1){return 1;} return 0;};
-				if (sophies_prime() == 1) num << *it << std::endl;
+			if (size() == 0){
+				std::cout << "This container is empty" << std::endl;
+			}
+			else{
+				for (it = numbers.begin(); it != numbers.end(); ++it){
+					auto sophies_prime = [this](){ if(isPrime(2*(*it)+1) == 1){return 1;} return 0;};
+					if (sophies_prime() == 1) num << *it << std::endl;
+				}
 			}
 		}
 		if ((flag != 0) && (flag != 1) && (flag != 2)){
@@ -82,21 +97,36 @@ public:
 	void print(const uint32_t flag){
 		uint32_t i = 1;
 		if (flag == 0){
-			for (it = numbers.begin(); it != numbers.end(); ++it){
-				std::cout << *it << " ";
+			if (size() == 0){
+				std::cout << "This container is empty" << std::endl;
+			}
+			else{
+				for (it = numbers.begin(); it != numbers.end(); ++it){
+					std::cout << *it << " ";
+				}
 			}
 		}
 		if (flag == 1){
-			for (it = numbers.begin(); it != numbers.end(); ++it){
-				auto super_prime = [this](uint32_t i){ if(isPrime(i) == 1){return 1;} return 0;};
-				if (super_prime(i) == 1) std::cout << *it << " ";
-				i++;
+			if (size() == 0){
+				std::cout << "This container is empty" << std::endl;
+			}
+			else{
+				for (it = numbers.begin(); it != numbers.end(); ++it){
+					auto super_prime = [this](uint32_t i){ if(isPrime(i) == 1){return 1;} return 0;};
+					if (super_prime(i) == 1) std::cout << *it << " ";
+					i++;
+				}
 			}
 		}
 		if (flag == 2){
-			for (it = numbers.begin(); it != numbers.end(); ++it){
-				auto sophies_prime = [this](){ if(isPrime(2*(*it)+1) == 1){return 1;} return 0;};
-				if (sophies_prime() == 1) std::cout << *it << " ";
+			if (size() == 0){
+				std::cout << "This container is empty" << std::endl;
+			}
+			else{
+				for (it = numbers.begin(); it != numbers.end(); ++it){
+					auto sophies_prime = [this](){ if(isPrime(2*(*it)+1) == 1){return 1;} return 0;};
+					if (sophies_prime() == 1) std::cout << *it << " ";
+				}
 			}
 		}
 		if ((flag != 0) && (flag != 1) && (flag != 2)){ 
@@ -115,7 +145,7 @@ public:
 	}
 
 	void find(const uint32_t max_value, const std::string flag){
-		if (flag == "i"){
+		if (flag == 1){
 			max = max_value;
 			numbers.clear();
 			for (uint32_t i = 1; i <= max; i++){
@@ -124,7 +154,7 @@ public:
 				}
 			}
 		}
-		if (flag == "ii"){
+		if (flag == 2){
 			max = 0;
 			uint32_t max_count = max_value;
 			numbers.clear();
@@ -138,7 +168,7 @@ public:
 				i++;
 			}
 		}
-		if((flag != "ii") && (flag == "i")){
+		if((flag != 1) && (flag == 2)){
 			throw std::invalid_argument("There is no such command.");
 		}
 	}
@@ -150,6 +180,7 @@ public:
 			return std::make_pair(it, 0);
 		}
 		else{
+			std::cout << "The number don't insert." << std::endl;
 			it = numbers.begin();
 			return std::make_pair(it, 1);
 		}
