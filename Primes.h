@@ -178,5 +178,9 @@ public:
 		return numbers.size();
 	}
 
+	void clean(){
+		numbers.clear();
+	}
+
 };
 #endif
