@@ -6,6 +6,7 @@
 #include <utility>
 #include <fstream>
 #include <exception>
+/*! \brief This is class-container of the prime numbers */
 class Primes
 {
 
@@ -15,6 +16,7 @@ private:
 	uint32_t max;
 	
 public:
+	/*! An upboard constructor */
 	Primes(uint32_t max_value){
 		if(max_value < 2){
 			throw std::invalid_argument("You cannot create a container with this border.");
@@ -27,17 +29,22 @@ public:
 		}
 	}
 
+	/*! An empty constructor */
 	Primes(){
 		max = 0;
 	}
 
+	/*! Copy constructor */
 	Primes(const Primes &primes): max(primes.max), numbers(primes.numbers){
 	}
 
+	/*! Moving constructor */
 	Primes(Primes&& primes): max(primes.max), numbers(primes.numbers){
 		primes.max = 0;
 		primes.numbers.clear();
 	}
+
+	/*! Method checks: this number is prime or not */
 	bool isPrime(const uint32_t n) const{
 		if (n > 1){
 			for (uint32_t i = 2; i < n; i++){
@@ -51,6 +58,7 @@ public:
 			return false;
 	}
 
+	/*! Method outputs the container into given file */
 	void print(const uint32_t flag, const std::string name_file){
 		std::ofstream num;
 		num.open(name_file);
@@ -94,6 +102,7 @@ public:
 		num.close();
 	}
 
+	/*! Method outputs the container on display */
 	void print(const uint32_t flag){
 		uint32_t i = 1;
 		if (flag == 0){
@@ -134,6 +143,7 @@ public:
 		}
 	}
 
+	/*! Method memorizes default sequence of prime numbers */
 	void find(){
 		max = 100;
 		numbers.clear();
@@ -144,7 +154,8 @@ public:
 		}
 	}
 
-	void find(const uint32_t max_value, const std::string flag){
+	/*! Method selects a sequence with the boards you gave */
+	void find(const uint32_t max_value, const uint32_t flag){
 		if (flag == 1){
 			max = max_value;
 			numbers.clear();
@@ -186,14 +197,17 @@ public:
 		}
 	}
 
+	/*! Iterator begin */
 	std::set<uint32_t>::iterator begin(){
 		return it = numbers.begin();
 	}
 
+	/*! Iterator end */
 	std::set<uint32_t>::iterator end(){
 		return it = numbers.end();
 	}
 	
+	/* Operator helps us to take values */
 	uint32_t operator[](const uint32_t index){
 		if ((index < 0) || (index > numbers.size())){
 			throw std::invalid_argument("Invalid argument");
@@ -205,10 +219,12 @@ public:
 		return *it;
 	}
 
+	/*! Returns container size */
 	uint32_t size() const{
 		return numbers.size();
 	}
 
+	/*! Clean method */
 	void clean(){
 		numbers.clear();
 	}
