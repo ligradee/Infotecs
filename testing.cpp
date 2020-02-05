@@ -45,6 +45,40 @@ public:
 		SIZE_TEST(15);
 	}
 
+	void COPY_CONSTRUCTOR_TEST(){
+		std::cout << "	~~~~~~~    COPY CONSTRUCTOR TEST  ~~~~~~~" << std::endl;
+		new(&num) Primes(50);
+		Primes test1 = num;
+		FIND_TEST(test1);
+		new(&num) Primes;
+		Primes test2 = num;
+		FIND_TEST(test2);
+	}
+
+	void MOVING_CONTAINER_TEST(){
+		std::cout << "	~~~~~~~    MOVING CONTAINER TEST  ~~~~~~~" << std::endl;
+		new(&num) Primes(50);
+		uint32_t size = num.size();
+		Primes test = std::move(num);
+		if((test.size() == size) && (num.size() == 0)){
+			std::cout << "Test passed." << std::endl;
+			count_test++;
+		}
+		else{
+			std::cout << "Test don't passed." << std::endl;
+		}
+		new(&num) Primes;
+		size = num.size();
+		Primes test2 = std::move(num);
+		if((test2.size() == size) && (num.size() == 0)){
+			std::cout << "Test passed." << std::endl;
+			count_test++;
+		}
+		else{
+			std::cout << "Test don't passed." << std::endl;
+		}
+		
+	}
 }
 
 int main(){
