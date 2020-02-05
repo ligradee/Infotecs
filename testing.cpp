@@ -25,7 +25,26 @@ public:
 			std::cout << "Test don't passed." << std::endl;
 		}
 	}
-	
+	void EMPTY_CONSTRUCTOR_TEST() {
+		std::cout << "	~~~~~~~    EMPTY CONSTRUCTOR TEST  ~~~~~~~" << std::endl;
+		new(&num) Primes;
+    	SIZE_TEST(0);
+	}
+
+	void BORDER_CONSTRUCTOR_TEST() {
+		std::cout << "	~~~~~~~    BORDER CONSTRUCTOR TEST  ~~~~~~~" << std::endl;
+		new(&num) Primes(10);
+		SIZE_TEST(4);
+		new(&num) Primes(20);
+		SIZE_TEST(8);
+		new(&num) Primes(30);
+		SIZE_TEST(10);
+		new(&num) Primes(40);
+		SIZE_TEST(12);
+		new(&num) Primes(50);
+		SIZE_TEST(15);
+	}
+
 }
 
 int main(){
