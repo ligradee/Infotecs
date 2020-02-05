@@ -197,6 +197,11 @@ public:
 		}
 	}
 
+	/*! Method for popping values from the container */
+	size_t erase(const uint32_t &value) {
+	return nums.erase(value);
+	}
+
 	/*! Iterator begin */
 	std::set<uint32_t>::iterator begin(){
 		return it = numbers.begin();
