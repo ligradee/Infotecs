@@ -135,9 +135,70 @@ public:
 		num.clean();
 		SIZE_TEST(0);
 	}
+
+	void SITUATION_WITH_OPERATOR(){
+		std::cout << "	~~~~~~~    OPERATOR[] TEST  ~~~~~~~" << std::endl;
+		new(&num) Primes;
+		num.insert(2);
+		OPERATOR_TEST(0, 2);
+		num.insert(3);
+		OPERATOR_TEST(1 , 3);
+		num.insert(5);
+		OPERATOR_TEST(2, 5);
+		new(&num) Primes(30);
+		OPERATOR_TEST(9, 29);
+		OPERATOR_TEST(6, 17);
+		OPERATOR_TEST(8, 23);
+	}
+
+	void SITUATION_WITH_FIND() {
+		std::cout << "	~~~~~~~    FIND TEST  ~~~~~~~" << std::endl;
+	    Primes test(100);
+	    num.find();
+    	FIND_TEST(test);
+    	num.clean();
+	    new (&test) Primes(60);
+    	num.find(60, 1);
+	    FIND_TEST(test);
+    	new (&test) Primes(100);
+	    num.find(100, 1);
+    	FIND_TEST(test);
+	    new (&test) Primes(72);
+    	num.find(20,2);
+    	FIND_TEST(test);
+    	new (&test) Primes(175);
+    	num.find(40,2);
+    	FIND_TEST(test);
+	};
+
+	void RUN_ALL_TESTS() {
+		TestPrimes test;
+		test.EMPTY_CONSTRUCTOR_TEST();
+		test.BORDER_CONSTRUCTOR_TEST();
+		test.COPY_CONSTRUCTOR_TEST();
+		test.MOVING_CONTAINER_TEST();
+		test.INSERT_TEST();
+		test.SITUATION_WITH_SIZE();
+		test.CLEAN_TEST();
+		test.SITUATION_WITH_OPERATOR();
+		test.ERASE_TEST();
+		test.SITUATION_WITH_FIND();
+		double precentage = test.count_test / 33 * 100;
+		std::cout << "\nResult of all tests: " << test.count_test << "/37 (" << (uint32_t)precentage << "%)\n\n";
+	}
+
+
+	void FIND_TEST(Primes &test){
+		uint32_t count = 0;
+		for(uint32_t i = 0; i < num.size(); i++){
+			if (num[i] == test[i]) count++;
+		}
+		SIZE_TEST(count);
+	}
+
 }
 
 int main(){
-	
+	RUN_ALL_TESTS();
 	return 0;
 }
