@@ -108,6 +108,33 @@ public:
 		num.erase(17);
 		SIZE_TEST(3);
 	}
+
+	void SITUATION_WITH_SIZE(){
+		std::cout << "	~~~~~~~    SIZE TEST  ~~~~~~~" << std::endl;
+		new(&num) Primes;
+		SIZE_TEST(0);
+		num.insert(2);
+		SIZE_TEST(1);
+		new(&num) Primes(30);
+		SIZE_TEST(10);
+	}
+
+	void CLEAN_TEST(){
+		std::cout << "	~~~~~~~    CLEAN TEST  ~~~~~~~" << std::endl;
+		new(&num) Primes;
+		if(num.size() == 0){
+			num.insert(2);
+		}
+		if(num.size() > 0){
+			num.clean();
+		}
+		SIZE_TEST(0);
+		new(&num) Primes(1000);
+		num.clean();
+		SIZE_TEST(0);
+		num.clean();
+		SIZE_TEST(0);
+	}
 }
 
 int main(){
