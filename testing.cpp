@@ -79,6 +79,35 @@ public:
 		}
 		
 	}
+	void INSERT_TEST() {
+		std::cout << "	~~~~~~~    INSERT TEST  ~~~~~~~" << std::endl;
+		new(&num) Primes;
+		num.insert(2);
+		OPERATOR_TEST(0, 2);
+		num.insert(5);
+		OPERATOR_TEST(1, 5);
+		num.insert(7);
+		OPERATOR_TEST(2, 7);
+		num.insert(11);
+		OPERATOR_TEST(3, 11);
+		num.insert(17);
+		OPERATOR_TEST(4,17);
+	}
+
+	void ERASE_TEST() {
+		std::cout << "	~~~~~~~    ERASE TEST  ~~~~~~~" << std::endl;
+		new(&num) Primes(20);
+		num.erase(2);
+		SIZE_TEST(7);
+		num.erase(5);
+		SIZE_TEST(6);
+		num.erase(7);
+		SIZE_TEST(5);
+		num.erase(11);
+		SIZE_TEST(4);
+		num.erase(17);
+		SIZE_TEST(3);
+	}
 }
 
 int main(){
